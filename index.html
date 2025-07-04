@@ -1,72 +1,415 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alejandro Aguado Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aguado Portfolio - Desarrollador Web & ML</title>
   <style>
+    /* Reset simple */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      scroll-behavior: smooth;
+    }
+
     body {
-      margin: 0;
-      font-family: 'Press Start 2P', monospace;
-      background-color: #000;
-      color: #00ff99;
-      text-align: center;
-      padding: 2rem;
+      background: #0f1624;
+      color: #e0e0e0;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: #00ffc8;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #00cc9a;
     }
 
     header {
-      padding-top: 2rem;
+      background: #071422;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0,255,200,0.1);
     }
 
-    h1 {
+    header h1 {
+      font-weight: 700;
+      letter-spacing: 2px;
       font-size: 1.5rem;
+      color: #00ffc8;
     }
 
-    p {
-      font-size: 0.8rem;
-      max-width: 700px;
-      margin: 1rem auto;
-      line-height: 1.6;
+    nav a {
+      margin-left: 1.5rem;
+      font-weight: 600;
     }
 
-    .button {
-      display: inline-block;
-      margin: 1rem;
+    /* CTA botón */
+    .btn-contact {
+      background: #00ffc8;
+      color: #071422;
+      padding: 0.5rem 1.2rem;
+      border-radius: 25px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: background 0.3s ease;
+    }
+    .btn-contact:hover {
+      background: #00cc9a;
+      color: white;
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin-bottom: 4rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      border-left: 6px solid #00ffc8;
+      padding-left: 1rem;
+      color: #00ffc8;
+      font-weight: 700;
+    }
+
+    p, li {
+      font-size: 1rem;
+      color: #cfd8dc;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Proyectos cards */
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: #16213e;
       padding: 1rem 1.5rem;
-      background-color: #00ff99;
-      color: #000;
-      text-decoration: none;
-      border: 3px solid #00ff99;
-      transition: all 0.2s ease-in-out;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,255,200,0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .project-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(0,255,200,0.5);
     }
 
-    .button:hover {
-      background-color: transparent;
-      color: #00ff99;
+    .project-card h3 {
+      margin-bottom: 0.5rem;
+      color: #00ffc8;
+      font-weight: 700;
     }
 
-    .footer {
-      font-size: 0.6rem;
-      margin-top: 4rem;
-      color: #888;
+    .project-card p {
+      margin-bottom: 0.8rem;
     }
+
+    .project-stack {
+      font-style: italic;
+      color: #6fffe9;
+      font-size: 0.9rem;
+    }
+
+    /* Sobre mí */
+    #about {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+    }
+
+    #about img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      border: 3px solid #00ffc8;
+      object-fit: cover;
+      box-shadow: 0 0 10px #00ffc8;
+    }
+
+    /* Chatbot botón fijo */
+    #chatbot-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #00ffc8;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      box-shadow: 0 6px 12px rgba(0,255,200,0.4);
+      cursor: pointer;
+      font-size: 28px;
+      color: #071422;
+      transition: background 0.3s ease;
+      z-index: 1000;
+    }
+    #chatbot-btn:hover {
+      background: #00cc9a;
+      color: white;
+    }
+
+    /* Chatbot ventana */
+    #chatbot {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 320px;
+      max-width: 90vw;
+      background: #071422;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,255,200,0.6);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 9999;
+    }
+
+    #chatbot-header {
+      background: #00ffc8;
+      color: #071422;
+      padding: 0.5rem 1rem;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    #chatbot-messages {
+      flex-grow: 1;
+      padding: 0.75rem 1rem;
+      overflow-y: auto;
+      max-height: 300px;
+      font-size: 0.9rem;
+      color: #d0f5e9;
+    }
+
+    .chatbot-message {
+      margin-bottom: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 12px;
+      max-width: 80%;
+      line-height: 1.3;
+    }
+    .chatbot-message.bot {
+      background: #00cc9a;
+      align-self: flex-start;
+      color: #071422;
+    }
+    .chatbot-message.user {
+      background: #0f1624;
+      border: 1px solid #00ffc8;
+      align-self: flex-end;
+      color: #00ffc8;
+    }
+
+    #chatbot-input-container {
+      display: flex;
+      border-top: 1px solid #00ffc8;
+      padding: 0.5rem;
+      background: #0f1624;
+    }
+    #chatbot-input {
+      flex-grow: 1;
+      background: transparent;
+      border: none;
+      color: #00ffc8;
+      padding: 0.4rem 0.75rem;
+      font-size: 1rem;
+      outline: none;
+    }
+    #chatbot-send {
+      background: #00ffc8;
+      border: none;
+      color: #071422;
+      font-weight: 700;
+      padding: 0 1rem;
+      cursor: pointer;
+      border-radius: 0 12px 12px 0;
+      transition: background 0.3s ease;
+    }
+    #chatbot-send:hover {
+      background: #00cc9a;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        margin-top: 0.5rem;
+      }
+      .projects-container {
+        grid-template-columns: 1fr;
+      }
+      main {
+        margin: 1rem;
+      }
+    }
+
   </style>
 </head>
 <body>
   <header>
-    <h1>&#x1F916; Alejandro Aguado Muñiz</h1>
-    <p>
-      Desarrollador Full Stack y Game Developer con experiencia en Unity, ML, backend y proyectos con IA real. <br>
-      Amante del pixel, lo retro y las redes neuronales.
-    </p>
-    <a href="https://www.notion.so" class="button" target="_blank">🌐 Ver Portfolio</a>
-    <a href="Alejandro_Aguado_Muniz_IT_CV.docx" class="button" download>📄 Descargar CV</a>
-    <a href="mailto:aguado435@gmail.com" class="button">📩 Contactar</a>
+    <h1>Aguado Portfolio</h1>
+    <nav>
+      <a href="#about">Sobre mí</a>
+      <a href="#projects-web">Proyectos Web</a>
+      <a href="#ml-projects">Proyectos ML</a>
+      <a href="#contact" class="btn-contact">Contrátame</a>
+    </nav>
   </header>
 
-  <footer class="footer">
-    &copy; 2025 Alejandro Aguado · Retro Dev Mode
-  </footer>
+  <main>
+    <section id="about">
+      <img src="https://avatars.githubusercontent.com/u/83028410?v=4" alt="Foto Aguado" />
+      <h2>Hola, soy Aguado</h2>
+      <p>Desarrollador Web Fullstack & Apasionado de Machine Learning. Creo soluciones innovadoras, desde sitios web responsivos hasta modelos inteligentes que potencian el futuro.</p>
+      <p><b>¿Por qué contratarme?</b></p>
+      <ul>
+        <li>Experiencia en tecnologías modernas: JavaScript, Python, React, Flask, TensorFlow.</li>
+        <li>Proyectos reales con impacto y resultados medibles.</li>
+        <li>Comunicación clara y entrega puntual.</li>
+        <li>Constante aprendizaje en IA y ML para dar el máximo valor.</li>
+      </ul>
+    </section>
+
+    <section id="projects-web">
+      <h2>Proyectos Web Destacados</h2>
+      <div class="projects-container">
+        <div class="project-card">
+          <h3>Portfolio Personal</h3>
+          <p>Mi sitio web profesional, con diseño responsivo y animaciones modernas.</p>
+          <p class="project-stack">HTML, CSS, JavaScript</p>
+          <a href="https://aguado435.github.io/Portfolio/" target="_blank">Ver proyecto</a>
+        </div>
+        <div class="project-card">
+          <h3>App de Tareas</h3>
+          <p>Aplicación web para gestionar tareas con login y persistencia en backend.</p>
+          <p class="project-stack">React, Node.js, MongoDB</p>
+          <a href="https://github.com/aguado435/task-app" target="_blank">Ver repositorio</a>
+        </div>
+        <!-- Puedes añadir más aquí -->
+      </div>
+    </section>
+
+    <section id="ml-projects">
+      <h2>Proyectos Destacados en Machine Learning</h2>
+      <div class="projects-container">
+        <div class="project-card">
+          <h3>Detector de Sentimientos</h3>
+          <p>Modelo basado en BERT para análisis de sentimiento en texto. Precisión: 92%.</p>
+          <p class="project-stack">Python, PyTorch, Transformers</p>
+          <a href="https://github.com/aguado435/sentiment-detector" target="_blank">Ver repositorio</a>
+        </div>
+        <div class="project-card">
+          <h3>Clasificador de Imágenes</h3>
+          <p>Red neuronal convolucional entrenada para clasificar imágenes de frutas.</p>
+          <p class="project-stack">Python, TensorFlow, Keras</p>
+          <a href="https://github.com/aguado435/image-classifier" target="_blank">Ver repositorio</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contacto</h2>
+      <p>¿Quieres trabajar conmigo? Escríbeme a <a href="mailto:aguado@example.com">aguado@example.com</a> o usa el chatbot abajo para saber más.</p>
+    </section>
+  </main>
+
+  <!-- Botón Chatbot -->
+  <button id="chatbot-btn" title="Chat conmigo">💬</button>
+
+  <!-- Ventana Chatbot -->
+  <div id="chatbot" role="region" aria-label="Chatbot de contacto">
+    <div id="chatbot-header">Chat Aguado</div>
+    <div id="chatbot-messages"></div>
+    <form id="chatbot-form" autocomplete="off">
+      <input id="chatbot-input" type="text" placeholder="Escribe tu mensaje..." aria-label="Mensaje de chat" />
+      <button id="chatbot-send" type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <script>
+    // Chatbot simple - respuestas básicas
+    const chatbotBtn = document.getElementById('chatbot-btn');
+    const chatbot = document.getElementById('chatbot');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const chatbotForm = document.getElementById('chatbot-form');
+    const chatbotInput = document.getElementById('chatbot-input');
+
+    chatbotBtn.addEventListener('click', () => {
+      chatbot.style.display = chatbot.style.display === 'flex' ? 'none' : 'flex';
+      if (chatbot.style.display === 'flex') {
+        chatbotInput.focus();
+      }
+    });
+
+    const botResponses = {
+      "hola": "¡Hola! ¿En qué puedo ayudarte hoy?",
+      "quién eres": "Soy Aguado, desarrollador web y entusiasta de Machine Learning.",
+      "qué proyectos tienes": "Tengo proyectos en desarrollo web y Machine Learning. Puedes verlos en la página.",
+      "cómo puedo contactarte": "Puedes enviarme un email a aguado@example.com o usar el formulario de contacto.",
+      "gracias": "¡De nada! Estoy aquí para ayudarte.",
+      "default": "Perdona, no entendí eso. Puedes preguntarme sobre mis proyectos, experiencia o contacto."
+    };
+
+    function addMessage(text, sender) {
+      const msg = document.createElement('div');
+      msg.textContent = text;
+      msg.classList.add('chatbot-message', sender);
+      chatbotMessages.appendChild(msg);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    chatbotForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const userMsg = chatbotInput.value.trim();
+      if (!userMsg) return;
+
+      addMessage(userMsg, 'user');
+      chatbotInput.value = '';
+
+      // Respuesta simple basada en palabras clave
+      const msgLower = userMsg.toLowerCase();
+      let response = botResponses["default"];
+
+      for (const key in botResponses) {
+        if (msgLower.includes(key)) {
+          response = botResponses[key];
+          break;
+        }
+      }
+
+      setTimeout(() => addMessage(response, 'bot'), 600);
+    });
+  </script>
 </body>
 </html>
