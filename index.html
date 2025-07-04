@@ -12,9 +12,9 @@
     }
 
     body {
-      background: linear-gradient(135deg, #120318, #21033a);
+      background: radial-gradient(circle, #1b002b 0%, #0c0018 100%);
       font-family: 'Courier New', monospace;
-      color: #00ffcc;
+      color: #00ffee;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -32,7 +32,7 @@
       font-size: 4rem;
       color: #0ff;
       text-shadow: 2px 2px #000, 0 0 10px #0ff;
-      animation: blink 2s infinite alternate;
+      animation: flicker 2s infinite alternate;
     }
 
     header p {
@@ -41,9 +41,10 @@
       color: #a0ffe0;
     }
 
-    @keyframes blink {
-      from { opacity: 1; }
-      to { opacity: 0.6; }
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.85; }
+      100% { opacity: 1; }
     }
 
     .btns {
@@ -55,8 +56,8 @@
     }
 
     a.button {
-      background: #00ffcc;
-      color: #120318;
+      background: #00ffee;
+      color: #1b002b;
       padding: 0.75rem 1.5rem;
       text-decoration: none;
       font-weight: bold;
@@ -68,7 +69,7 @@
     a.button:hover {
       background: #0ff;
       color: #000;
-      box-shadow: 0 0 20px #00ffcc;
+      box-shadow: 0 0 20px #00ffee;
     }
 
     section {
@@ -91,7 +92,7 @@
     #ml-demo {
       margin-top: 2rem;
       background: #1a1a2e;
-      border: 4px solid #00ffcc;
+      border: 4px solid #00ffee;
       width: 320px;
       height: 320px;
       display: grid;
@@ -111,14 +112,36 @@
     }
 
     .pixel.active {
-      background-color: #00ffcc;
-      box-shadow: 0 0 10px #00ffcc;
+      background-color: #00ffee;
+      box-shadow: 0 0 10px #00ffee;
     }
 
     #ml-status {
       margin-top: 1rem;
       font-weight: bold;
       color: #0ff;
+    }
+
+    .cv-card {
+      background: #111;
+      border: 2px solid #0ff;
+      border-radius: 1rem;
+      padding: 2rem;
+      color: #a0ffe0;
+      margin-top: 2rem;
+      max-width: 600px;
+      text-align: left;
+      box-shadow: 0 0 20px #00ffee55;
+    }
+
+    .cv-card h3 {
+      color: #0ff;
+      margin-bottom: 1rem;
+    }
+
+    .cv-card ul {
+      margin-left: 1.2rem;
+      line-height: 1.5;
     }
 
     footer {
@@ -133,8 +156,8 @@
 <body>
 
   <header>
-    <h1>ALEJANDRO AGUADO</h1>
-    <p>Código, Machine Learning y mucho carisma</p>
+    <h1>AGUADO</h1>
+    <p>"El código es mi idioma. Y la IA, mi aliado."</p>
     <div class="btns">
       <a href="mailto:aguado@example.com" class="button">Contáctame</a>
       <a href="Aguado_CV.pdf" class="button" download>Descargar CV</a>
@@ -142,22 +165,36 @@
   </header>
 
   <section>
-    <h2>¡Hola, soy Aguado!</h2>
+    <h2>👾 Bienvenido a mi terminal digital</h2>
     <p>
-      Mezclo desarrollo web con modelos de Machine Learning y un toque de estilo que no pasa desapercibido.
-      Cada proyecto que toco es una experiencia interactiva y memorable. Si quieres algo único, hablemos.
+      Soy desarrollador y amante del Machine Learning. Me gusta crear cosas que funcionen, sorprendan y hablen por sí solas. Este sitio es mi tarjeta de presentación interactiva. Te vas a acordar de mí.
     </p>
   </section>
 
   <section>
-    <h2>Pixel Brain (Mini-Demo ML)</h2>
-    <p>Activa los bloques y descubre si el patrón es simétrico. Sencillo, elegante y en puro pixel art.</p>
+    <h2>🧠 Pixel Brain (Demo ML)</h2>
+    <p>Activa los píxeles. ¿Puedes crear un patrón simétrico que sea "reconocido" por esta red pixel-neuronal?</p>
     <div id="ml-demo"></div>
-    <div id="ml-status">Toca para interactuar</div>
+    <div id="ml-status">Interactúa con el grid.</div>
+  </section>
+
+  <section class="cv-card">
+    <h3>🧬 Mini CV (versión visible)</h3>
+    <p><strong>Nombre:</strong> Aguado</p>
+    <p><strong>Rol:</strong> Desarrollador Fullstack + IA</p>
+    <p><strong>Skills:</strong></p>
+    <ul>
+      <li>JavaScript, Python, Flask, HTML5, CSS3</li>
+      <li>PyTorch, TensorFlow, modelos ONNX</li>
+      <li>Diseño UI retro pixel, animaciones web</li>
+      <li>Desarrollo móvil con Unity</li>
+    </ul>
+    <p><strong>Idiomas:</strong> Español, Inglés</p>
+    <p><strong>Actitud:</strong> 🔥 Creatividad + Lógica + Persistencia</p>
   </section>
 
   <footer>
-    Diseño retro &lt;3 Hecho por Aguado
+    <p>Diseño retro por Aguado | Código con alma desde 2024</p>
   </footer>
 
   <script>
@@ -191,8 +228,9 @@
         }
         if (!symmetric) break;
       }
-      status.textContent = symmetric ? "Patrón Reconocido: SIMÉTRICO ✓" : "No simétrico. Intenta de nuevo.";
+      status.textContent = symmetric ? "✔️ Patrón Reconocido: SIMÉTRICO" : "❌ No simétrico. Inténtalo otra vez.";
     }
   </script>
+
 </body>
 </html>
