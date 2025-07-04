@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aguado - Código con Alma</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aguado - Portfolio Interactivo</title>
   <style>
+    :root {
+      --neon-blue: #00ffff;
+      --bg-dark: #0a0a23;
+      --text-soft: #a0ffe0;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -12,189 +18,185 @@
     }
 
     body {
-      background: radial-gradient(circle, #1b002b 0%, #0c0018 100%);
       font-family: 'Courier New', monospace;
-      color: #00ffee;
-      min-height: 100vh;
+      background: radial-gradient(ellipse at top, #0a0a23 0%, #000000 100%);
+      color: var(--text-soft);
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 2rem 1rem;
+      min-height: 100vh;
       overflow-x: hidden;
     }
 
     header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin: 3rem 1rem 2rem;
+      animation: glow-fade 3s ease-in-out infinite alternate;
     }
 
     header h1 {
-      font-size: 4rem;
-      color: #0ff;
-      text-shadow: 2px 2px #000, 0 0 10px #0ff;
-      animation: flicker 2s infinite alternate;
+      font-size: 3.5rem;
+      color: var(--neon-blue);
+      text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
     }
 
     header p {
-      font-size: 1.2rem;
       margin-top: 1rem;
-      color: #a0ffe0;
+      font-size: 1.2rem;
+      color: var(--text-soft);
     }
 
-    @keyframes flicker {
-      0% { opacity: 1; }
-      50% { opacity: 0.85; }
-      100% { opacity: 1; }
+    @keyframes glow-fade {
+      0% { text-shadow: 0 0 5px var(--neon-blue); }
+      100% { text-shadow: 0 0 20px var(--neon-blue); }
     }
 
-    .btns {
-      margin-top: 2rem;
+    .buttons {
+      margin: 2rem 0;
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
       justify-content: center;
     }
 
-    a.button {
-      background: #00ffee;
-      color: #1b002b;
-      padding: 0.75rem 1.5rem;
+    .button {
+      background: var(--neon-blue);
+      color: #000;
       text-decoration: none;
+      padding: 0.75rem 1.5rem;
       font-weight: bold;
       border-radius: 10px;
-      box-shadow: 0 0 10px #0ff;
+      box-shadow: 0 0 15px var(--neon-blue);
       transition: all 0.3s ease;
     }
 
-    a.button:hover {
+    .button:hover {
       background: #0ff;
       color: #000;
-      box-shadow: 0 0 20px #00ffee;
+      box-shadow: 0 0 25px var(--neon-blue);
     }
 
     section {
       max-width: 800px;
-      margin: 2rem auto;
+      margin: 2rem 1rem;
       text-align: center;
     }
 
     h2 {
       font-size: 2rem;
+      color: var(--neon-blue);
       margin-bottom: 1rem;
-      color: #0ff;
     }
 
     p {
       font-size: 1.1rem;
-      color: #a0ffe0;
+      line-height: 1.6;
     }
 
-    #ml-demo {
+    .ml-grid {
       margin-top: 2rem;
-      background: #1a1a2e;
-      border: 4px solid #00ffee;
-      width: 320px;
-      height: 320px;
       display: grid;
       grid-template-columns: repeat(8, 1fr);
-      grid-template-rows: repeat(8, 1fr);
-      gap: 2px;
+      gap: 3px;
+      background: #111;
+      border: 3px solid var(--neon-blue);
+      width: 320px;
+      height: 320px;
       margin-left: auto;
       margin-right: auto;
+      padding: 5px;
+      border-radius: 10px;
     }
 
     .pixel {
       width: 100%;
       height: 100%;
-      background-color: #2f3e46;
-      border-radius: 3px;
+      background: #2c2c2c;
       transition: 0.2s;
+      border-radius: 3px;
+      cursor: pointer;
     }
 
     .pixel.active {
-      background-color: #00ffee;
-      box-shadow: 0 0 10px #00ffee;
+      background: var(--neon-blue);
+      box-shadow: 0 0 10px var(--neon-blue);
     }
 
     #ml-status {
       margin-top: 1rem;
       font-weight: bold;
-      color: #0ff;
+      color: var(--neon-blue);
     }
 
-    .cv-card {
+    .cv-section {
       background: #111;
-      border: 2px solid #0ff;
-      border-radius: 1rem;
+      border: 2px solid var(--neon-blue);
       padding: 2rem;
-      color: #a0ffe0;
       margin-top: 2rem;
-      max-width: 600px;
+      border-radius: 15px;
       text-align: left;
-      box-shadow: 0 0 20px #00ffee55;
+      box-shadow: 0 0 20px #00ffff55;
     }
 
-    .cv-card h3 {
-      color: #0ff;
+    .cv-section h3 {
+      color: var(--neon-blue);
       margin-bottom: 1rem;
     }
 
-    .cv-card ul {
-      margin-left: 1.2rem;
-      line-height: 1.5;
+    .cv-section ul {
+      margin-left: 1.5rem;
+      line-height: 1.7;
     }
 
     footer {
       margin-top: auto;
       padding: 2rem;
       text-align: center;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #555;
     }
   </style>
 </head>
 <body>
-
   <header>
     <h1>AGUADO</h1>
-    <p>"El código es mi idioma. Y la IA, mi aliado."</p>
-    <div class="btns">
-      <a href="mailto:aguado@example.com" class="button">Contáctame</a>
-      <a href="Aguado_CV.pdf" class="button" download>Descargar CV</a>
+    <p>⚡ Dev de otra galaxia | 🧠 IA simbiótica | 🎮 Estilo Retro que Impacta</p>
+    <div class="buttons">
+      <a class="button" href="mailto:aguado@example.com">Contactar</a>
+      <a class="button" href="Aguado_CV.pdf" download>Descargar CV</a>
+      <a class="button" href="https://github.com/aguado435" target="_blank">GitHub</a>
     </div>
   </header>
 
   <section>
-    <h2>👾 Bienvenido a mi terminal digital</h2>
+    <h2>👨‍🚀 ¿Quién soy?</h2>
     <p>
-      Soy desarrollador y amante del Machine Learning. Me gusta crear cosas que funcionen, sorprendan y hablen por sí solas. Este sitio es mi tarjeta de presentación interactiva. Te vas a acordar de mí.
+      Soy un desarrollador creativo con visión de futuro, mezclando inteligencia artificial real con interfaces jugables y memorables. No hago proyectos planos, creo experiencias.
     </p>
   </section>
 
   <section>
-    <h2>🧠 Pixel Brain (Demo ML)</h2>
-    <p>Activa los píxeles. ¿Puedes crear un patrón simétrico que sea "reconocido" por esta red pixel-neuronal?</p>
-    <div id="ml-demo"></div>
-    <div id="ml-status">Interactúa con el grid.</div>
+    <h2>🧠 Demo ML: Pixel Brain</h2>
+    <p>Haz clic en los cuadros y descubre si puedes generar simetría reconocida por mi red simbólica retro.</p>
+    <div class="ml-grid" id="ml-demo"></div>
+    <div id="ml-status">Haz clic para activar los píxeles.</div>
   </section>
 
-  <section class="cv-card">
-    <h3>🧬 Mini CV (versión visible)</h3>
+  <section class="cv-section">
+    <h3>📄 Mini CV embebido</h3>
     <p><strong>Nombre:</strong> Aguado</p>
-    <p><strong>Rol:</strong> Desarrollador Fullstack + IA</p>
-    <p><strong>Skills:</strong></p>
+    <p><strong>Rol:</strong> Fullstack + IA Creativa</p>
     <ul>
-      <li>JavaScript, Python, Flask, HTML5, CSS3</li>
-      <li>PyTorch, TensorFlow, modelos ONNX</li>
-      <li>Diseño UI retro pixel, animaciones web</li>
-      <li>Desarrollo móvil con Unity</li>
+      <li><strong>Lenguajes:</strong> Python, JS, Bash, C#</li>
+      <li><strong>IA:</strong> PyTorch, ONNX, redes personalizadas</li>
+      <li><strong>Frontend:</strong> HTML5, CSS3, Pixel Art UI</li>
+      <li><strong>Backend:</strong> Flask, REST, DBs</li>
+      <li><strong>Unity 2D:</strong> Juegos, apps interactivas</li>
     </ul>
-    <p><strong>Idiomas:</strong> Español, Inglés</p>
-    <p><strong>Actitud:</strong> 🔥 Creatividad + Lógica + Persistencia</p>
   </section>
 
   <footer>
-    <p>Diseño retro por Aguado | Código con alma desde 2024</p>
+    <p>© 2025 Aguado. Todo hecho a código limpio y café fuerte ☕</p>
   </footer>
 
   <script>
@@ -212,25 +214,24 @@
 
     function togglePixel(index) {
       pixels[index].classList.toggle("active");
-      evaluatePattern();
+      evaluateSymmetry();
     }
 
-    function evaluatePattern() {
-      let symmetric = true;
+    function evaluateSymmetry() {
+      let isSymmetric = true;
       for (let row = 0; row < 8; row++) {
         for (let col = 0; col < 4; col++) {
-          const a = pixels[row * 8 + col].classList.contains("active");
-          const b = pixels[row * 8 + (7 - col)].classList.contains("active");
-          if (a !== b) {
-            symmetric = false;
+          const left = pixels[row * 8 + col].classList.contains("active");
+          const right = pixels[row * 8 + (7 - col)].classList.contains("active");
+          if (left !== right) {
+            isSymmetric = false;
             break;
           }
         }
-        if (!symmetric) break;
+        if (!isSymmetric) break;
       }
-      status.textContent = symmetric ? "✔️ Patrón Reconocido: SIMÉTRICO" : "❌ No simétrico. Inténtalo otra vez.";
+      status.textContent = isSymmetric ? "✅ Patrón simétrico reconocido" : "❌ No simétrico todavía";
     }
   </script>
-
 </body>
 </html>
