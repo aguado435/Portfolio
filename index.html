@@ -3,234 +3,237 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aguado - Portfolio Interactivo</title>
+  <title>AGUADO — IA & Dev Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --neon-blue: #00ffff;
-      --bg-dark: #0a0a23;
-      --text-soft: #a0ffe0;
-    }
-
-    * {
-      box-sizing: border-box;
+    body {
       margin: 0;
       padding: 0;
-    }
-
-    body {
-      font-family: 'Courier New', monospace;
-      background: radial-gradient(ellipse at top, #0a0a23 0%, #000000 100%);
-      color: var(--text-soft);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
+      font-family: 'VT323', monospace;
+      background: linear-gradient(180deg, #02010f 0%, #0a0a23 100%);
+      color: #00ffff;
       overflow-x: hidden;
     }
 
     header {
+      padding: 5rem 2rem 2rem;
       text-align: center;
-      margin: 3rem 1rem 2rem;
-      animation: glow-fade 3s ease-in-out infinite alternate;
+      background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
     }
 
     header h1 {
-      font-size: 3.5rem;
-      color: var(--neon-blue);
-      text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+      font-size: 5rem;
+      text-shadow: 0 0 10px #00ffff, 0 0 30px #0088ff;
+      animation: flicker 2s infinite alternate;
     }
 
     header p {
+      font-size: 1.5rem;
+      color: #aaffff;
       margin-top: 1rem;
-      font-size: 1.2rem;
-      color: var(--text-soft);
+      text-shadow: 0 0 5px #00cccc;
     }
 
-    @keyframes glow-fade {
-      0% { text-shadow: 0 0 5px var(--neon-blue); }
-      100% { text-shadow: 0 0 20px var(--neon-blue); }
+    @keyframes flicker {
+      0% { opacity: 1; }
+      100% { opacity: 0.85; }
     }
 
-    .buttons {
-      margin: 2rem 0;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .button {
-      background: var(--neon-blue);
-      color: #000;
-      text-decoration: none;
-      padding: 0.75rem 1.5rem;
-      font-weight: bold;
-      border-radius: 10px;
-      box-shadow: 0 0 15px var(--neon-blue);
-      transition: all 0.3s ease;
-    }
-
-    .button:hover {
-      background: #0ff;
-      color: #000;
-      box-shadow: 0 0 25px var(--neon-blue);
-    }
-
-    section {
+    .terminal {
       max-width: 800px;
-      margin: 2rem 1rem;
+      margin: 3rem auto;
+      background: #000;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #00ffff44;
+      font-size: 1.3rem;
+      line-height: 1.8;
+      border: 2px solid #00ffff88;
+      position: relative;
+    }
+
+    .terminal::before {
+      content: '>_';
+      color: #0ff;
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .terminal span {
+      display: inline-block;
+      animation: typing 4s steps(60, end);
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .ml-demo {
+      max-width: 400px;
+      margin: 2rem auto;
       text-align: center;
     }
 
-    h2 {
-      font-size: 2rem;
-      color: var(--neon-blue);
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    .ml-grid {
-      margin-top: 2rem;
+    .grid {
       display: grid;
       grid-template-columns: repeat(8, 1fr);
-      gap: 3px;
+      gap: 4px;
       background: #111;
-      border: 3px solid var(--neon-blue);
-      width: 320px;
-      height: 320px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 5px;
+      padding: 8px;
+      border: 3px solid #00ffff;
       border-radius: 10px;
     }
 
-    .pixel {
+    .cell {
       width: 100%;
-      height: 100%;
-      background: #2c2c2c;
-      transition: 0.2s;
-      border-radius: 3px;
+      aspect-ratio: 1;
+      background: #222;
+      border-radius: 2px;
       cursor: pointer;
+      transition: 0.2s;
     }
 
-    .pixel.active {
-      background: var(--neon-blue);
-      box-shadow: 0 0 10px var(--neon-blue);
+    .cell.active {
+      background: #00ffff;
+      box-shadow: 0 0 8px #00ffff;
     }
 
-    #ml-status {
+    .ml-status {
       margin-top: 1rem;
-      font-weight: bold;
-      color: var(--neon-blue);
+      font-size: 1.2rem;
+      color: #0ff;
     }
 
-    .cv-section {
-      background: #111;
-      border: 2px solid var(--neon-blue);
+    .skills, .cv {
+      max-width: 800px;
+      margin: 3rem auto;
       padding: 2rem;
-      margin-top: 2rem;
+      background: #080818;
+      border: 2px solid #00ffff99;
       border-radius: 15px;
-      text-align: left;
-      box-shadow: 0 0 20px #00ffff55;
+      box-shadow: 0 0 15px #00ffff33;
     }
 
-    .cv-section h3 {
-      color: var(--neon-blue);
+    .skills h2, .cv h2 {
+      font-size: 2rem;
       margin-bottom: 1rem;
+      color: #00ffff;
+      text-align: center;
     }
 
-    .cv-section ul {
-      margin-left: 1.5rem;
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .skill {
+      background: #0ff2;
+      padding: 0.8rem 1.5rem;
+      border-radius: 12px;
+      border: 1px solid #00ffff;
+      font-size: 1.2rem;
+    }
+
+    .cv-content p, .cv-content ul {
+      font-size: 1.2rem;
       line-height: 1.7;
     }
 
     footer {
-      margin-top: auto;
-      padding: 2rem;
+      padding: 3rem;
       text-align: center;
-      font-size: 0.85rem;
       color: #555;
+      font-size: 1rem;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>AGUADO</h1>
-    <p>⚡ Dev de otra galaxia | 🧠 IA simbiótica | 🎮 Estilo Retro que Impacta</p>
-    <div class="buttons">
-      <a class="button" href="mailto:aguado@example.com">Contactar</a>
-      <a class="button" href="Aguado_CV.pdf" download>Descargar CV</a>
-      <a class="button" href="https://github.com/aguado435" target="_blank">GitHub</a>
-    </div>
+    <p>IA, juegos y código brutal para un futuro más raro</p>
   </header>
 
-  <section>
-    <h2>👨‍🚀 ¿Quién soy?</h2>
-    <p>
-      Soy un desarrollador creativo con visión de futuro, mezclando inteligencia artificial real con interfaces jugables y memorables. No hago proyectos planos, creo experiencias.
-    </p>
+  <div class="terminal">
+    <span>Conectando con unidad de procesamiento neuronal... ✅<br>
+    Analizando contexto... ✅<br>
+    Resultado: este dev domina IA, videojuegos y sabe contar historias.</span>
+  </div>
+
+  <section class="ml-demo">
+    <h2>🧠 Demo IA: Simetría Neuronal</h2>
+    <div class="grid" id="grid"></div>
+    <div class="ml-status" id="status">Crea un patrón simétrico para desbloquear feedback IA</div>
   </section>
 
-  <section>
-    <h2>🧠 Demo ML: Pixel Brain</h2>
-    <p>Haz clic en los cuadros y descubre si puedes generar simetría reconocida por mi red simbólica retro.</p>
-    <div class="ml-grid" id="ml-demo"></div>
-    <div id="ml-status">Haz clic para activar los píxeles.</div>
+  <section class="skills">
+    <h2>💻 Habilidades clave</h2>
+    <div class="skills-list">
+      <div class="skill">Python / Flask</div>
+      <div class="skill">Unity C#</div>
+      <div class="skill">IA simbólica</div>
+      <div class="skill">PyTorch / ONNX</div>
+      <div class="skill">Pixel UI</div>
+      <div class="skill">Dev Juegos 2D</div>
+      <div class="skill">Chatbot / TTS</div>
+      <div class="skill">SQL / JSON</div>
+    </div>
   </section>
 
-  <section class="cv-section">
-    <h3>📄 Mini CV embebido</h3>
-    <p><strong>Nombre:</strong> Aguado</p>
-    <p><strong>Rol:</strong> Fullstack + IA Creativa</p>
-    <ul>
-      <li><strong>Lenguajes:</strong> Python, JS, Bash, C#</li>
-      <li><strong>IA:</strong> PyTorch, ONNX, redes personalizadas</li>
-      <li><strong>Frontend:</strong> HTML5, CSS3, Pixel Art UI</li>
-      <li><strong>Backend:</strong> Flask, REST, DBs</li>
-      <li><strong>Unity 2D:</strong> Juegos, apps interactivas</li>
-    </ul>
+  <section class="cv">
+    <h2>📄 CV Express</h2>
+    <div class="cv-content">
+      <p><strong>Nombre:</strong> Aguado</p>
+      <p><strong>Rol:</strong> Fullstack + IA Creativa</p>
+      <p><strong>Experiencia:</strong></p>
+      <ul>
+        <li>Desarrollo de IA entrenable en juegos móviles</li>
+        <li>Creación de interfaces interactivas con narrativa</li>
+        <li>Backends Flask escalables + APIs para IA</li>
+        <li>Exportación y ejecución de modelos ONNX en Unity (Barracuda)</li>
+      </ul>
+      <p><a href="Aguado_CV.pdf" style="color:#0ff;text-decoration:underline;">Descargar CV en PDF →</a></p>
+    </div>
   </section>
 
   <footer>
-    <p>© 2025 Aguado. Todo hecho a código limpio y café fuerte ☕</p>
+    <p>© 2025 Aguado — Portfolio codificado a mano, sin frameworks, solo café ☕</p>
   </footer>
 
   <script>
-    const grid = document.getElementById("ml-demo");
-    const status = document.getElementById("ml-status");
-    const pixels = [];
+    const gridEl = document.getElementById("grid");
+    const status = document.getElementById("status");
+    let cells = [];
 
     for (let i = 0; i < 64; i++) {
       const div = document.createElement("div");
-      div.classList.add("pixel");
-      div.addEventListener("click", () => togglePixel(i));
-      grid.appendChild(div);
-      pixels.push(div);
+      div.classList.add("cell");
+      div.addEventListener("click", () => toggleCell(i));
+      gridEl.appendChild(div);
+      cells.push(div);
     }
 
-    function togglePixel(index) {
-      pixels[index].classList.toggle("active");
-      evaluateSymmetry();
+    function toggleCell(i) {
+      cells[i].classList.toggle("active");
+      evaluate();
     }
 
-    function evaluateSymmetry() {
-      let isSymmetric = true;
+    function evaluate() {
+      let symmetric = true;
       for (let row = 0; row < 8; row++) {
         for (let col = 0; col < 4; col++) {
-          const left = pixels[row * 8 + col].classList.contains("active");
-          const right = pixels[row * 8 + (7 - col)].classList.contains("active");
-          if (left !== right) {
-            isSymmetric = false;
-            break;
-          }
+          const a = cells[row * 8 + col].classList.contains("active");
+          const b = cells[row * 8 + (7 - col)].classList.contains("active");
+          if (a !== b) symmetric = false;
         }
-        if (!isSymmetric) break;
       }
-      status.textContent = isSymmetric ? "✅ Patrón simétrico reconocido" : "❌ No simétrico todavía";
+      status.innerText = symmetric ? "✅ Simetría neuronal reconocida" : "❌ Sigue intentando";
     }
   </script>
 </body>
