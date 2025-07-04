@@ -2,278 +2,197 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Alejandro Aguado - Desarrollador Web & ML</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aguado - Código con Alma</title>
   <style>
-    /* Reset básico */
     * {
-      margin: 0; padding: 0; box-sizing: border-box;
-      font-family: 'Courier New', Courier, monospace;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      background: #0a0a23;
-      color: #a3f7bf;
+      background: linear-gradient(135deg, #120318, #21033a);
+      font-family: 'Courier New', monospace;
+      color: #00ffcc;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 1rem;
-      user-select: none;
+      padding: 2rem 1rem;
+      overflow-x: hidden;
     }
 
     header {
-      width: 100%;
-      max-width: 900px;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid #38ef7d;
-      margin-bottom: 2rem;
       text-align: center;
+      margin-bottom: 3rem;
     }
 
     header h1 {
-      font-size: 3rem;
-      letter-spacing: 4px;
-      color: #38ef7d;
-      text-shadow:
-        1px 1px 0 #0a0a23,
-        2px 2px 0 #0a0a23;
+      font-size: 4rem;
+      color: #0ff;
+      text-shadow: 2px 2px #000, 0 0 10px #0ff;
+      animation: blink 2s infinite alternate;
     }
 
     header p {
       font-size: 1.2rem;
-      color: #72f5a4;
-      margin-top: 0.4rem;
+      margin-top: 1rem;
+      color: #a0ffe0;
     }
 
-    /* Contenedor botones (contacto + CV) */
-    .btn-group {
-      margin-top: 1rem;
+    @keyframes blink {
+      from { opacity: 1; }
+      to { opacity: 0.6; }
+    }
+
+    .btns {
+      margin-top: 2rem;
       display: flex;
-      justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
-    /* Botones principales */
-    a.btn-contact,
-    a.btn-cv {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.7rem 2.2rem;
-      background: #38ef7d;
-      color: #0a0a23;
-      font-weight: 700;
-      font-size: 1.2rem;
+    a.button {
+      background: #00ffcc;
+      color: #120318;
+      padding: 0.75rem 1.5rem;
       text-decoration: none;
-      border-radius: 8px;
-      box-shadow:
-        0 0 12px #38ef7d,
-        0 0 24px #2dd865;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      user-select: none;
-      cursor: pointer;
-      border: none;
-      font-family: 'Courier New', monospace;
+      font-weight: bold;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #0ff;
+      transition: all 0.3s ease;
     }
 
-    a.btn-contact:hover,
-    a.btn-cv:hover {
-      background: #2dd865;
-      box-shadow:
-        0 0 18px #2dd865,
-        0 0 36px #38ef7d;
-      color: #e0ffe7;
-    }
-
-    /* Ícono PDF SVG */
-    .btn-cv svg {
-      width: 20px;
-      height: 20px;
-      fill: #0a0a23;
-      transition: fill 0.3s ease;
-    }
-
-    a.btn-cv:hover svg {
-      fill: #e0ffe7;
-      filter: drop-shadow(0 0 3px #2dd865);
-    }
-
-    main {
-      width: 100%;
-      max-width: 900px;
-      text-align: center;
+    a.button:hover {
+      background: #0ff;
+      color: #000;
+      box-shadow: 0 0 20px #00ffcc;
     }
 
     section {
-      margin-bottom: 3rem;
+      max-width: 800px;
+      margin: 2rem auto;
+      text-align: center;
     }
 
     h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
-      text-shadow: 0 0 6px #38ef7d;
+      color: #0ff;
     }
 
     p {
       font-size: 1.1rem;
-      margin-bottom: 1rem;
-      color: #8df3bc;
+      color: #a0ffe0;
     }
 
-    /* Demo ML pixel art */
     #ml-demo {
-      background: #0a0a23;
-      border: 4px solid #38ef7d;
+      margin-top: 2rem;
+      background: #1a1a2e;
+      border: 4px solid #00ffcc;
       width: 320px;
       height: 320px;
-      margin: 0 auto;
-      image-rendering: pixelated;
       display: grid;
       grid-template-columns: repeat(8, 1fr);
       grid-template-rows: repeat(8, 1fr);
       gap: 2px;
-      user-select: none;
-      cursor: pointer;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .pixel {
-      width: 36px;
-      height: 36px;
-      background-color: #1f6f45;
-      transition: background-color 0.3s ease;
-      border-radius: 4px;
-      box-shadow: inset 0 0 3px #38ef7d;
+      width: 100%;
+      height: 100%;
+      background-color: #2f3e46;
+      border-radius: 3px;
+      transition: 0.2s;
     }
+
     .pixel.active {
-      background-color: #38ef7d;
-      box-shadow: 0 0 8px #38ef7d;
+      background-color: #00ffcc;
+      box-shadow: 0 0 10px #00ffcc;
     }
 
     #ml-status {
       margin-top: 1rem;
-      color: #72f5a4;
-      font-family: 'Courier New', monospace;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 1.5px;
+      font-weight: bold;
+      color: #0ff;
     }
 
     footer {
-      color: #4af08a;
-      font-size: 0.9rem;
       margin-top: auto;
-      padding: 1rem 0;
+      padding: 2rem;
       text-align: center;
-    }
-
-    @media (max-width: 400px) {
-      #ml-demo {
-        width: 240px;
-        height: 240px;
-        grid-template-columns: repeat(8, 1fr);
-        grid-template-rows: repeat(8, 1fr);
-      }
-      .pixel {
-        width: 28px;
-        height: 28px;
-      }
+      font-size: 0.9rem;
+      color: #555;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Aguado</h1>
-  <p>Desarrollador Web & Machine Learning | Innovación con Código y Datos</p>
-  <div class="btn-group">
-    <a href="mailto:aguado@example.com" class="btn-contact" aria-label="Contactar a Aguado">Contrátame</a>
-    <a href="Aguado_CV.pdf" download="Aguado_CV.pdf" class="btn-cv" aria-label="Descargar CV de Aguado">
-      Descargar CV
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6zm5-7v4h-2v-4H7l4-4 4 4h-3z"/>
-      </svg>
-    </a>
-  </div>
-</header>
-
-<main>
-  <section id="about">
-    <h2>Sobre mí</h2>
-    <p>
-      Soy un desarrollador fullstack apasionado por la inteligencia artificial y el machine learning. 
-      Combino creatividad con precisión técnica para construir soluciones que impactan y resuelven problemas reales.
-    </p>
-  </section>
-
-  <section id="ml-demo-section">
-    <h2>Mini Demo ML - Reconocimiento Simplificado</h2>
-    <p>
-      Haz click en los cuadros para activar patrones. Esta demo simula una red neuronal muy simple que "reconoce" si el patrón es simétrico.
-    </p>
-
-    <div id="ml-demo" role="grid" aria-label="Mini demo de reconocimiento ML estilo pixel art">
-      <!-- Pixels generados por JS -->
+  <header>
+    <h1>AGUADO</h1>
+    <p>Código, Machine Learning y mucho carisma</p>
+    <div class="btns">
+      <a href="mailto:aguado@example.com" class="button">Contáctame</a>
+      <a href="Aguado_CV.pdf" class="button" download>Descargar CV</a>
     </div>
-    <div id="ml-status" aria-live="polite" aria-atomic="true">Interactúa con el grid para probar</div>
+  </header>
+
+  <section>
+    <h2>¡Hola, soy Aguado!</h2>
+    <p>
+      Mezclo desarrollo web con modelos de Machine Learning y un toque de estilo que no pasa desapercibido.
+      Cada proyecto que toco es una experiencia interactiva y memorable. Si quieres algo único, hablemos.
+    </p>
   </section>
-</main>
 
-<footer>
-  © 2025 Aguado | <a href="https://aguado435.github.io/Portfolio/" target="_blank" style="color:#4af08a;">Portfolio Original</a>
-</footer>
+  <section>
+    <h2>Pixel Brain (Mini-Demo ML)</h2>
+    <p>Activa los bloques y descubre si el patrón es simétrico. Sencillo, elegante y en puro pixel art.</p>
+    <div id="ml-demo"></div>
+    <div id="ml-status">Toca para interactuar</div>
+  </section>
 
-<script>
-  // Generar pixels 8x8 grid
-  const demo = document.getElementById('ml-demo');
-  const status = document.getElementById('ml-status');
-  const pixels = [];
+  <footer>
+    Diseño retro &lt;3 Hecho por Aguado
+  </footer>
 
-  for(let i=0; i<64; i++) {
-    const pixel = document.createElement('div');
-    pixel.classList.add('pixel');
-    pixel.setAttribute('role', 'gridcell');
-    pixel.setAttribute('aria-checked', 'false');
-    pixel.tabIndex = 0;
-    pixel.addEventListener('click', () => togglePixel(i));
-    pixel.addEventListener('keydown', e => {
-      if(e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        togglePixel(i);
-      }
-    });
-    demo.appendChild(pixel);
-    pixels.push(pixel);
-  }
+  <script>
+    const grid = document.getElementById("ml-demo");
+    const status = document.getElementById("ml-status");
+    const pixels = [];
 
-  function togglePixel(index) {
-    const pixel = pixels[index];
-    const isActive = pixel.classList.toggle('active');
-    pixel.setAttribute('aria-checked', isActive.toString());
-    evaluatePattern();
-  }
-
-  // Evaluar patrón simétrico verticalmente
-  function evaluatePattern() {
-    // La red neuronal "sabe" que es simétrico si pixel[i,j] == pixel[i,7-j]
-    let symmetric = true;
-    for(let row=0; row<8; row++) {
-      for(let col=0; col<4; col++) {
-        const left = pixels[row*8 + col].classList.contains('active');
-        const right = pixels[row*8 + (7-col)].classList.contains('active');
-        if(left !== right) {
-          symmetric = false;
-          break;
-        }
-      }
-      if(!symmetric) break;
+    for (let i = 0; i < 64; i++) {
+      const div = document.createElement("div");
+      div.classList.add("pixel");
+      div.addEventListener("click", () => togglePixel(i));
+      grid.appendChild(div);
+      pixels.push(div);
     }
-    status.textContent = symmetric ? "Patrón reconocido: ¡Simétrico!" : "Patrón reconocido: No simétrico";
-  }
-</script>
 
+    function togglePixel(index) {
+      pixels[index].classList.toggle("active");
+      evaluatePattern();
+    }
+
+    function evaluatePattern() {
+      let symmetric = true;
+      for (let row = 0; row < 8; row++) {
+        for (let col = 0; col < 4; col++) {
+          const a = pixels[row * 8 + col].classList.contains("active");
+          const b = pixels[row * 8 + (7 - col)].classList.contains("active");
+          if (a !== b) {
+            symmetric = false;
+            break;
+          }
+        }
+        if (!symmetric) break;
+      }
+      status.textContent = symmetric ? "Patrón Reconocido: SIMÉTRICO ✓" : "No simétrico. Intenta de nuevo.";
+    }
+  </script>
 </body>
 </html>
-
-
