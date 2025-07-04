@@ -3,186 +3,153 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alejandro Aguado — IA, Juegos y Full Stack</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
+  <title>Alejandro Aguado | Dev Retro-Futurista</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0a0a0f;
-      --fg: #00ffcc;
-      --accent: #ff006e;
-      --font: 'Fira Code', monospace;
-    }
-
-    * {
+    html, body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      background: black;
+      color: #00ffcc;
+      font-family: 'Press Start 2P', monospace;
+      overflow-x: hidden;
     }
-
-    body {
-      background-color: var(--bg);
-      color: var(--fg);
-      font-family: var(--font);
-      padding: 2rem;
-      min-height: 100vh;
-    }
-
     header {
+      padding: 2rem;
       text-align: center;
-      margin-bottom: 4rem;
+      background: linear-gradient(90deg, #000, #111);
     }
-
     h1 {
-      font-size: 3rem;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      animation: flicker 2s infinite;
+      font-size: 2rem;
+      color: #00ffff;
+      text-shadow: 0 0 5px #0ff;
     }
-
-    .subtitle {
-      color: #ccc;
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    @keyframes flicker {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.8; }
-    }
-
-    section {
-      max-width: 900px;
+    .content {
+      max-width: 800px;
       margin: 2rem auto;
-      line-height: 1.6;
+      padding: 2rem;
+      background: #111;
+      border: 1px dashed #00ffcc;
     }
-
-    h2 {
-      color: var(--accent);
-      margin-top: 2rem;
-      border-bottom: 2px solid var(--accent);
+    .cv-btn {
       display: inline-block;
-      margin-bottom: 1rem;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      border: 2px solid #00ffcc;
+      color: #00ffcc;
+      text-decoration: none;
+      background: black;
+      transition: all 0.3s;
     }
-
-    ul {
-      margin-left: 1.5rem;
+    .cv-btn:hover {
+      background: #00ffcc;
+      color: black;
     }
-
     canvas {
       display: block;
-      margin: 2rem auto;
-      border: 2px solid var(--accent);
-      border-radius: 8px;
-      background: #000;
+      margin: 3rem auto;
+      background: #111;
+      border: 2px solid #00ffcc;
     }
-
-    .cv-download {
+    footer {
       text-align: center;
-      margin-top: 3rem;
-    }
-
-    .cv-download a {
-      text-decoration: none;
-      background: var(--accent);
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
-
-    .cv-download a:hover {
-      background: #ff338a;
+      padding: 2rem;
+      color: #888;
+      font-size: 0.75rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Alejandro Aguado</h1>
-    <p class="subtitle">Full Stack Dev · Unity · Machine Learning · IA simbólica</p>
-    <p class="subtitle">📍 Madrid  | 📧 aguado435@gmail.com</p>
-    <p class="subtitle">🔗 <a href="https://www.linkedin.com/in/alejandro-aguado-0a42a5205" target="_blank" style="color:var(--fg);text-decoration:underline;">LinkedIn</a></p>
+    <h1>👾 Alejandro Aguado 👾</h1>
+    <p>Full Stack Dev | Unity & ML | Pixel Dreamer</p>
+    <a href="./CV_Alejandro_Aguado.pdf" class="cv-btn" download>📄 Descargar CV</a>
   </header>
-
-  <section>
-    <h2>Resumen Profesional</h2>
-    <p>Desarrollador Full Stack y Game Developer con +5 años de experiencia en C#, Python, Machine Learning y entornos interactivos como Unity. Especializado en IA evolutiva, redes neuronales ligeras, gamificación y sistemas simbólicos con memoria. Multilingüe, autodidacta, con vocación por el impacto social y la tecnología ética.</p>
-
-    <h2>Experiencia Profesional</h2>
-    <ul>
-      <li><strong>Desarrollador de Videojuegos (Autónomo) | 2021 – Actualidad</strong><br>
-        Juego tipo Tamagotchi + ML en Unity (C#, Flask, ONNX, PyTorch, SQLite). IA con emociones, aprendizaje y personalidad.
-      </li>
-      <li><strong>Desarrollador Web Full Stack (Autónomo) | 2019 – 2021</strong><br>
-        WordPress + Elementor + PHP custom. SEO, APIs y optimización de velocidad.
-      </li>
-      <li><strong>Asistente Técnico – WDMI (Oporto) | 2023 – 2024</strong><br>
-        Soporte técnico internacional, documentación, metodologías ágiles.</li>
-    </ul>
-
-    <h2>Educación</h2>
-    <ul>
-      <li>Grado en Periodismo – UCLM (2017)</li>
-      <li>Bachillerato – IES Julio Pérez (2016)</li>
-    </ul>
-
-    <h2>Certificaciones</h2>
-    <ul>
-      <li>Unity Certified Associate: Game Developer (2024)</li>
-      <li>Nutanix Certified Professional - MCI (2024)</li>
-    </ul>
-
-    <h2>Voluntariado & Impacto</h2>
-    <ul>
-      <li>Instructor digital para mayores (2020, 2022)</li>
-      <li>Acciones sociales contra la pobreza (2018–2023)</li>
-    </ul>
-
-    <h2>Tech Stack</h2>
-    <p><strong>Lenguajes:</strong> C#, Python, JS, SQL, HTML/CSS</p>
-    <p><strong>Frameworks:</strong> .NET, Flask, TensorFlow, PyTorch</p>
-    <p><strong>Herramientas:</strong> Unity, Git, WordPress, ONNX, SQLite, Docker</p>
-    <p><strong>Cloud:</strong> Nutanix, GCP (básico)</p>
-    <p><strong>Idiomas:</strong> 🇪🇸🇬🇧🇫🇷🇵🇹</p>
-
-    <h2>Soft Skills</h2>
-    <ul>
-      <li>Pensamiento crítico | Resolución creativa | Autonomía técnica</li>
-      <li>Adaptabilidad multicultural | Comunicación transversal</li>
-    </ul>
-  </section>
-
-  <canvas id="aiCanvas" width="400" height="300"></canvas>
-
-  <div class="cv-download">
-    <a href="Aguado_CV.pdf" download>📄 Descargar CV en PDF</a>
+  <div class="content">
+    <h2>🔬 Mini demo: Red Neuronal Retro</h2>
+    <canvas id="neuralNet" width="600" height="300"></canvas>
+    <p>Simulación básica de activación neuronal generada en HTML5 Canvas. No es solo visual, ¡es actitud técnica!</p>
   </div>
 
+  <div class="content">
+    <h2>🚀 Sobre mí</h2>
+    <p>
+      Desarrollador Full Stack y Game Dev con más de 5 años de experiencia en programación C#, Python, Unity y Machine Learning.
+      Experto en entornos interactivos, con foco en IA real, juegos simbióticos y diseño de experiencias. Apasionado por el futuro, lo retro y la IA ética.
+    </p>
+    <p>
+      Multilingüe (Español, Inglés, Francés, Portugués), certificado por Unity y Nutanix, y siempre aprendiendo más.
+    </p>
+  </div>
+
+  <footer>
+    <p>💻 aguado435@gmail.com | 📍 Madrid, España</p>
+    <p><a href="https://www.linkedin.com/in/alejandro-aguado-0a42a5205" style="color: #00ffcc;">LinkedIn</a></p>
+    <p>&copy; 2025 Alejandro Aguado | Powered by café y Python 🧠</p>
+  </footer>
+
   <script>
-    const canvas = document.getElementById("aiCanvas");
-    const ctx = canvas.getContext("2d");
-    function drawNetwork() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const neurons = [];
-      for (let i = 0; i < 10; i++) {
-        neurons.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height });
+    const canvas = document.getElementById('neuralNet');
+    const ctx = canvas.getContext('2d');
+
+    const nodesPerLayer = [3, 4, 2];
+    const nodeRadius = 10;
+    const layerSpacing = canvas.width / (nodesPerLayer.length + 1);
+
+    const layers = nodesPerLayer.map((n, i) => {
+      const layer = [];
+      const ySpacing = canvas.height / (n + 1);
+      for (let j = 0; j < n; j++) {
+        layer.push({
+          x: layerSpacing * (i + 1),
+          y: ySpacing * (j + 1),
+          activation: Math.random()
+        });
       }
-      neurons.forEach((n1, i) => {
-        ctx.beginPath();
-        ctx.arc(n1.x, n1.y, 6, 0, Math.PI * 2);
-        ctx.fillStyle = '#00ffcc';
-        ctx.fill();
-        for (let j = i + 1; j < neurons.length; j++) {
-          if (Math.random() > 0.6) {
+      return layer;
+    });
+
+    function drawNet() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.lineWidth = 1;
+
+      for (let i = 0; i < layers.length - 1; i++) {
+        const current = layers[i];
+        const next = layers[i + 1];
+        current.forEach(n1 => {
+          next.forEach(n2 => {
+            ctx.strokeStyle = '#00ffcc22';
             ctx.beginPath();
             ctx.moveTo(n1.x, n1.y);
-            ctx.lineTo(neurons[j].x, neurons[j].y);
-            ctx.strokeStyle = '#ff006e44';
+            ctx.lineTo(n2.x, n2.y);
             ctx.stroke();
-          }
-        }
+          });
+        });
+      }
+
+      layers.forEach(layer => {
+        layer.forEach(node => {
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, nodeRadius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(0,255,204,${node.activation})`;
+          ctx.fill();
+          ctx.strokeStyle = '#00ffcc';
+          ctx.stroke();
+        });
       });
     }
-    setInterval(drawNetwork, 800);
+
+    function animate() {
+      layers.forEach(layer => {
+        layer.forEach(node => {
+          node.activation = Math.max(0.2, Math.min(1, node.activation + (Math.random() - 0.5) * 0.1));
+        });
+      });
+      drawNet();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
   </script>
 </body>
 </html>
