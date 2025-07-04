@@ -8,7 +8,7 @@
     /* Reset básico */
     * {
       margin: 0; padding: 0; box-sizing: border-box;
-      font-family: 'Courier New', Courier, monospace; /* para toque retro */
+      font-family: 'Courier New', Courier, monospace;
     }
 
     body {
@@ -46,6 +46,60 @@
       margin-top: 0.4rem;
     }
 
+    /* Contenedor botones (contacto + CV) */
+    .btn-group {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Botones principales */
+    a.btn-contact,
+    a.btn-cv {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.7rem 2.2rem;
+      background: #38ef7d;
+      color: #0a0a23;
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow:
+        0 0 12px #38ef7d,
+        0 0 24px #2dd865;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+      cursor: pointer;
+      border: none;
+      font-family: 'Courier New', monospace;
+    }
+
+    a.btn-contact:hover,
+    a.btn-cv:hover {
+      background: #2dd865;
+      box-shadow:
+        0 0 18px #2dd865,
+        0 0 36px #38ef7d;
+      color: #e0ffe7;
+    }
+
+    /* Ícono PDF SVG */
+    .btn-cv svg {
+      width: 20px;
+      height: 20px;
+      fill: #0a0a23;
+      transition: fill 0.3s ease;
+    }
+
+    a.btn-cv:hover svg {
+      fill: #e0ffe7;
+      filter: drop-shadow(0 0 3px #2dd865);
+    }
+
     main {
       width: 100%;
       max-width: 900px;
@@ -66,32 +120,6 @@
       font-size: 1.1rem;
       margin-bottom: 1rem;
       color: #8df3bc;
-    }
-
-    /* Botón de contacto */
-    a.btn-contact {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.7rem 2.2rem;
-      background: #38ef7d;
-      color: #0a0a23;
-      font-weight: 700;
-      font-size: 1.2rem;
-      text-decoration: none;
-      border-radius: 8px;
-      box-shadow:
-        0 0 12px #38ef7d,
-        0 0 24px #2dd865;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      user-select: none;
-    }
-
-    a.btn-contact:hover {
-      background: #2dd865;
-      box-shadow:
-        0 0 18px #2dd865,
-        0 0 36px #38ef7d;
-      color: #e0ffe7;
     }
 
     /* Demo ML pixel art */
@@ -123,7 +151,6 @@
       box-shadow: 0 0 8px #38ef7d;
     }
 
-    /* Texto pequeño debajo */
     #ml-status {
       margin-top: 1rem;
       color: #72f5a4;
@@ -133,7 +160,6 @@
       letter-spacing: 1.5px;
     }
 
-    /* Footer pequeño */
     footer {
       color: #4af08a;
       font-size: 0.9rem;
@@ -142,7 +168,6 @@
       text-align: center;
     }
 
-    /* Responsive */
     @media (max-width: 400px) {
       #ml-demo {
         width: 240px;
@@ -162,7 +187,15 @@
 <header>
   <h1>Aguado</h1>
   <p>Desarrollador Web & Machine Learning | Innovación con Código y Datos</p>
-  <a href="mailto:aguado@example.com" class="btn-contact" aria-label="Contactar a Aguado">Contrátame</a>
+  <div class="btn-group">
+    <a href="mailto:aguado@example.com" class="btn-contact" aria-label="Contactar a Aguado">Contrátame</a>
+    <a href="Aguado_CV.pdf" download="Aguado_CV.pdf" class="btn-cv" aria-label="Descargar CV de Aguado">
+      Descargar CV
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6zm5-7v4h-2v-4H7l4-4 4 4h-3z"/>
+      </svg>
+    </a>
+  </div>
 </header>
 
 <main>
@@ -223,12 +256,12 @@
 
   // Evaluar patrón simétrico verticalmente
   function evaluatePattern() {
-    // Grid 8x8, check symmetry vertical axis
+    // La red neuronal "sabe" que es simétrico si pixel[i,j] == pixel[i,7-j]
     let symmetric = true;
     for(let row=0; row<8; row++) {
       for(let col=0; col<4; col++) {
         const left = pixels[row*8 + col].classList.contains('active');
-        const right = pixels[row*8 + (7 - col)].classList.contains('active');
+        const right = pixels[row*8 + (7-col)].classList.contains('active');
         if(left !== right) {
           symmetric = false;
           break;
@@ -236,16 +269,11 @@
       }
       if(!symmetric) break;
     }
-    if(symmetric) {
-      status.textContent = "¡Patrón simétrico detectado! Este es un patrón 'reconocido'.";
-      status.style.color = "#38ef7d";
-    } else {
-      status.textContent = "Patrón no simétrico. Sigue intentando.";
-      status.style.color = "#a3f7bf";
-    }
+    status.textContent = symmetric ? "Patrón reconocido: ¡Simétrico!" : "Patrón reconocido: No simétrico";
   }
 </script>
 
 </body>
 </html>
+
 
